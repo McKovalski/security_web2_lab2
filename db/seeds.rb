@@ -28,3 +28,50 @@ User.create!([
         :password_confirmation => "password"
     }
 ])
+
+Account.create!([
+    {
+        :user_id => 1,
+        :balance => 20000
+    },
+    {
+        :user_id => 2,
+        :balance => 0
+    },
+    {
+        :user_id => 3,
+        :balance => 7000
+    },
+    {
+        :user_id => 4,
+        :balance => 2500
+    }
+])
+
+Transaction.create!([
+    {
+        :from_user_id => 1,
+        :to_user_id => 2,
+        :ammount => 2000
+    },
+    {
+        :from_user_id => 2,
+        :to_user_id => 4,
+        :ammount => 1000
+    },
+    {
+        :from_user_id => 3,
+        :to_user_id => 1,
+        :ammount => 500
+    },
+    {
+        :from_user_id => 2,
+        :to_user_id => 3,
+        :ammount => 5000
+    },
+    {
+        :from_user_id => 4,
+        :to_user_id => 1,
+        :ammount => 10000
+    }
+])
