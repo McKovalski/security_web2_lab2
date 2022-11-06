@@ -19,7 +19,9 @@
 
 <br/>
 <h2>Get all movies for a director</h2>
-<div>Enter director ID to display their movies (Director IDs are listed on the home page)</div>
+<div>Enter director ID to display their movies (Director IDs are listed on the home page) <br/>
+<strong>Note: </strong> Recognizes forbidden SQL statements and displays an error message if such is entered
+</div>
 <br/>
 <%= form_with url: sqlinjection_get_director_movies_safe_path, method: :get do |form| %>
   <%= form.text_field :director_id, required: true %>
@@ -28,7 +30,9 @@
 
 <br/>
 <h2>Get all movies in genre</h2>
-<div>Enter genre name to display all movies for that genre</div>
+<div>Enter genre name to display all movies for that genre<br/>
+<strong>Note: </strong> Sanitizes the input query and returns an empty message if query is forbidden
+</div>
 <br/>
 <%= form_with url: sqlinjection_get_movies_genre_safe_path, method: :get do |form| %>
   <%= form.text_field :genre, required: true %>
