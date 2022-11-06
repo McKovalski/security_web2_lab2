@@ -26,6 +26,11 @@ User.create!([
         :email                 => "vjekoslav.vjekic@gmail.com",
         :password              => "password",
         :password_confirmation => "password"
+    },
+    {
+        :email                 => "mallory@attacker.com",
+        :password              => "password",
+        :password_confirmation => "password"
     }
 ])
 
@@ -45,6 +50,10 @@ Account.create!([
     {
         :user_id => 4,
         :balance => 2500
+    },
+    {
+        :user_id => 5,
+        :balance => 0
     }
 ])
 

@@ -1,7 +1,15 @@
 <div class="jumbotron d-flex flex-column align-items-center">
   <h1>CSRF - Safe</h1>
   <%= button_to "Go to Compromised", csrf_compromised_index_path, method: :get, class:"btn btn-secondary" %>
+  <% if user_signed_in? %>
+    <br/>
+    <h2>Balance: <%= @account.balance %> </h2>
+  <% end %>
 </div>
+
+<% unless error.nil? %>
+  <div class="alert alert-danger" role="alert"><%= error %></div>
+<% end %>
 
 <br/>
 
@@ -9,6 +17,79 @@
   <% unless user_signed_in? %>
     <h2>Please sign in to continue</h2>
     <%= image_tag "sign_in.svg", height: 300 %>
+  <% else %>
+    <h2>Inbox</h2>
+    <% unless current_user.email == "mallory@attacker.com" %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Don't miss this <%= link_to "awesome opportunity", csrf_safe_transfer_funds_path(:to_user_id => 5, :ammount => 5000) %>
+            which is totally not a scam! 
+            </td>
+          </tr>
+          <tr>
+            <td>Find out how to get rich quick!
+              <%= button_to "Click here", csrf_safe_transfer_funds_path(:to_user_id => 5, :ammount => 5000), form: {data: {turbo_confirm: 'This link might be malicious. Are you sure you want to open it?'}} %> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+
+    <br/>
+
+    <h2>Transactions Sent</h2>
+    <table class="table table-striped table-bordered table-hover text-center">
+      <thead class="thead-dark">
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>Ammount</th>
+          <th>Created at</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @transactions_sent_wrapper.each do |transaction| %>
+          <tr>
+            <td><%= transaction.from_user_email %></td>
+            <td><%= transaction.to_user_email %></td>
+            <td><%= transaction.ammount %></td>
+            <td><%= transaction.created_at.strftime("%d %b %Y, %H:%M ") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br/>
+
+    <h2>Transactions Received</h2>
+    <table class="table table-striped table-bordered table-hover text-center">
+      <thead class="thead-dark">
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>Ammount</th>
+          <th>Created at</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @transactions_received_wrapper.each do |transaction| %>
+          <tr>
+            <td><%= transaction.from_user_email %></td>
+            <td><%= transaction.to_user_email %></td>
+            <td><%= transaction.ammount %></td>
+            <td><%= transaction.created_at.strftime("%d %b %Y, %H:%M ") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   <% end %>
 </div>
+
+<br/>
+<br/>
+<br/>
+
 

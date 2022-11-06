@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get 'csrf_safe/index'
   get 'csrf_compromised/index'
+  get 'csrf_compromised/transfer_funds'
+  post 'csrf_compromised/transfer_funds'
+  get 'csrf_safe/transfer_funds'
+  post 'csrf_safe/transfer_funds'
+  post 'csrf_compromised/reset_data'
   get 'sqlinjection/safe'
   get 'sqlinjection/compromised'
   get 'sqlinjection/get_director_movies_compromised'
