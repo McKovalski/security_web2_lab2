@@ -30,6 +30,9 @@ gem "jbuilder"
 # Devise
 gem 'devise', '~> 4.8', '>= 4.8.1'
 
+# Active Record Session Store
+gem 'activerecord-session_store'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

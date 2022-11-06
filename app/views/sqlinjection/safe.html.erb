@@ -1,0 +1,40 @@
+<div class="jumbotron d-flex flex-column align-items-center">
+    <h1>SQL Injection - Safe</h1>
+    <%= button_to "Go to Compromised", sqlinjection_compromised_path, method: :get, class:"btn btn-secondary" %>
+</div>
+
+<% unless error.nil? %>
+  <div class="alert alert-danger" role="alert"><%= error %></div>
+<% end %>
+
+<% unless notice.nil? %>
+  <div class="alert alert-info" role="alert">
+    <ul>
+      <% notice.each do |message| %>
+        <li> <%= message.to_string %> </li> 
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<br/>
+<h2>Get all movies for a director</h2>
+<div>Enter director ID to display their movies (Director IDs are listed on the home page)</div>
+<br/>
+<%= form_with url: sqlinjection_get_director_movies_safe_path, method: :get do |form| %>
+  <%= form.text_field :director_id, required: true %>
+  <%= form.submit "Search"%>
+<% end %>
+
+<br/>
+<h2>Get all movies in genre</h2>
+<div>Enter genre name to display all movies for that genre</div>
+<br/>
+<%= form_with url: sqlinjection_get_movies_genre_safe_path, method: :get do |form| %>
+  <%= form.text_field :genre, required: true %>
+  <%= form.submit "Search"%>
+<% end %>
+
+<br/>
+<br/>
+<br/>

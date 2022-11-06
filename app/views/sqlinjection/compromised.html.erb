@@ -1,0 +1,52 @@
+<div class="jumbotron d-flex flex-column align-items-center">
+    <h1>SQL Injection - Compromised</h1>
+    <%= button_to "Go to Safe", sqlinjection_safe_path, method: :get, class:"btn btn-secondary" %>
+</div>
+
+<% unless error.nil? %>
+  <div class="alert alert-danger" role="alert"><%= error %></div>
+<% end %>
+
+<% unless notice.nil? %>
+  <div class="alert alert-info" role="alert">
+    <ul>
+      <% notice.each do |message| %>
+        <li> <%= message.to_string %> </li> 
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<br/>
+<h2>Get all movies for a director</h2>
+<div>Enter director ID to display their movies (Director IDs are listed on the home page) <br> 
+<strong>Hints:</strong> 
+<ul>
+  <li>You can get all movies by entering: 1) OR 1=1--</li>
+  <li>You can also use an UNION statement to get more info from the same table, ex: 1) UNION SELECT * FROM movies WHERE director_id = 4--</li>
+  <li>Or you could get sensitive data from another table, such as user emails and encrypted passwords: 1 AND 1=2) UNION SELECT 1, email, null, null, encrypted_password, 1, null, null FROM users--</li>
+</ul>
+</div>
+<%= form_with url: sqlinjection_get_director_movies_compromised_path, method: :get do |form| %>
+  <%= form.text_field :director_id, required: true %>
+  <%= form.submit "Search"%>
+<% end %>
+
+<br/>
+<h2>Get all movies in genre</h2>
+<div>Enter genre name to display all movies for that genre<br>
+<strong>Hints:</strong> 
+<ul>
+  <li>This is a similar case to the previous example, except here you have to enter a string instead of a number</li>
+  <li>So for a tautology to work the query can look like this: ') OR 1=1--</li>
+  <li>To get sensitive user data: 1' AND 1=2) UNION SELECT 1, email, null, null, encrypted_password, 1, null, null FROM users--</li>
+</ul>
+</div>
+<%= form_with url: sqlinjection_get_movies_genre_compromised_path, method: :get do |form| %>
+  <%= form.text_field :genre, required: true %>
+  <%= form.submit "Search"%>
+<% end %>
+
+<br/>
+<br/>
+<br/>
