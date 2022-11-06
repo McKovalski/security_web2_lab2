@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'csrf/index'
+  get 'csrf_safe/index'
+  get 'csrf_compromised/index'
   get 'sqlinjection/safe'
   get 'sqlinjection/compromised'
   get 'sqlinjection/get_director_movies_compromised'

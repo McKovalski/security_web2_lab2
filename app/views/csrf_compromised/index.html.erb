@@ -1,0 +1,15 @@
+<div class="jumbotron d-flex flex-column align-items-center">
+  <h1>CSRF - Compromised</h1>
+  <%= button_to "Go to Safe", csrf_safe_index_path, method: :get, class:"btn btn-secondary" %>
+</div>
+
+<br/>
+
+<div class="d-flex flex-column align-items-center">
+  <% unless user_signed_in? %>
+    <h2>Please sign in to continue</h2>
+    <%= image_tag "sign_in.svg", height: 300 %>
+  <% else %>
+    <h2>Inbox</h2>
+  <% end %>
+</div>

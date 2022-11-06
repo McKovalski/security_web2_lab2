@@ -7,7 +7,7 @@
           <%= link_to 'SQL Injection', sqlinjection_compromised_path, class:"nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'CSRF', csrf_index_path, class:"nav-link" %>
+          <%= link_to 'CSRF', csrf_compromised_index_path, class:"nav-link" %>
         </li>
         <% if user_signed_in? %>
           <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class:"btn btn-secondary" %>

@@ -1,0 +1,2 @@
+module CsrfCompromisedHelper
+end
