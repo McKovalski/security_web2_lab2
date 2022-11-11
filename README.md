@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Implementirano je sve iz zadataka SQL Injection i CSRF.
 
-Things you may want to cover:
+Korisnicki racuni za CSRF:
+* ivica.ivic@gmail.com
+* marica.maric@gmail.com
+* jurica.juric@gmail.com
+* vjekoslav.vjekic@gmail.com
 
-* Ruby version
+Lozinke za sve racune su iste: password
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Upute za lokalno pokretanje:
+Potrebno je imati instaliran Ruby verzije 3.x i Rails verzije 7.x \
+Klonirati repozitorij i pokrenuti skriptu \bin\setup
